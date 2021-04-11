@@ -1,10 +1,12 @@
 const player1 = {
+  player: 1,
   name: "Sub Zero",
   hp: 100,
   img: "img/subzero.gif"
 };
 
 const player2 = {
+  player: 2,
   name: "Scorpion",
   hp: 100,
   img: "img/scorpion.gif"
@@ -16,6 +18,12 @@ createPlayer('Sub Zero', 'subzero.gif');
 createPlayer('Scorpion', 'scorpion.gif');
 
 function attack(player) {
+  if (player.hp > 0) {
+    player.hp -= getRandom(1, 20);
+    if (player.hp < 0) {
+      player.hp = 0;
+    }
+  }
   console.log(player.name + " Fight ...");
 }
 
@@ -41,4 +49,8 @@ function createPlayer(playerName, playerImg) {
   img.src = playerImg;
 
   character.appendChild(img);
+}
+
+function getRandom(min, max) {
+    return Math.random() * (max - min) + min;
 }
